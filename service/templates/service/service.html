@@ -1,0 +1,101 @@
+{% extends 'base_1.html' %} {% load static %} {% block content %}
+
+<section id="about" class="about">
+  <div class="container">
+    <div class="card">
+      <div class="card-header">
+        <!-- Button trigger modal -->
+        <button
+          type="button"
+          class="btn btn-primary"
+          data-bs-toggle="modal"
+          data-bs-target="#exampleModal"
+        >
+          Service
+        </button>
+      </div>
+      <!-- /.card-header -->
+      <div class="card-body p-0">
+        <table class="table">
+          <thead>
+            <tr>
+              <th style="width: 10px">#</th>
+              <th>Nom</th>
+              
+            </tr>
+          </thead>
+          <tbody>
+            {% for about in services %}
+            <tr>
+              <td>{{about.id}}</td>
+              <td> <a href="{% url 'service_category' about.slug %}">{{about.slug}}</a></td>
+              
+              
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+      <!-- /.card-body -->
+    </div>
+  </div>
+  <!-- Modal -->
+  <div
+    class="modal fade"
+    id="exampleModal"
+    tabindex="-1"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="card card-primary">
+          <div class="card-header">
+            <h3 class="card-title">Quick Example</h3>
+          </div>
+          <!-- /.card-header -->
+          <!-- form start -->
+          <form method='post'>
+            {% csrf_token %}
+            <div class="card-body">
+              <div class="form-group">
+                <label for="exampleInputEmail1">nom</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  name="nom"
+                  placeholder="nom"
+                />
+              </div>
+              
+              <div class="form-group">
+                <label for="exampleInputFile">Image</label>
+                <div class="input-group">
+                  <div class="custom-file">
+                    <input
+                      type="file"
+                      class="custom-file-input"
+                      name="image"
+                    />
+                    <label class="custom-file-label" for="exampleInputFile"
+                      >Choose file</label
+                    >
+                  </div>
+                  
+                </div>
+              </div>
+              
+            </div>
+            <!-- /.card-body -->
+    
+            <div class="card-footer">
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}
