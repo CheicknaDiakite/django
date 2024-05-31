@@ -33,5 +33,6 @@ class Service(models.Model):
 class Cate_Service(models.Model):
     libelle = models.CharField(max_length=100, null=True, blank=True)
     description = models.TextField(null=True, blank=True)
+    image = models.ImageField()
 
     service = models.ForeignKey(Service, on_delete=models.CASCADE)

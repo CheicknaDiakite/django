@@ -57,17 +57,18 @@
   <section id="about" class="about">
     
     <div class="container" data-aos="fade-up">
+      {% for about in abouts %}
       <div class="section-title text-center">
         <h2>About</h2>
-        <p>Check our about</p>
+        <p>{{about.titre}}</p>
       </div>
-      {% for about in abouts %}
+      
       <div class="row">
         <div class="col-lg-6 order-1 order-lg-2" data-aos="fade-left" data-aos-delay="100">
           <img src="{{about.image.url}}" class="img-fluid" alt="">
         </div>
         <div class="col-lg-6 pt-4 pt-lg-0 order-2 order-lg-1 content" data-aos="fade-right" data-aos-delay="100">
-          <h3>{{about.titre}}</h3>
+          {% comment %} <h3>{{about.titre}}</h3> {% endcomment %}
           <p class="fst-italic">
             {{about.libelle}}
           </p>
@@ -108,19 +109,19 @@
   <!-- ======= Service Section ======= -->
   <section id="features" class="features">    
     <div class="container" data-aos="fade-up">
-
+      {% for service in services %}
       <div class="section-title text-center">
         <h2>Service</h2>
-        <p>Check our Service</p>
+        <p>{{service.nom}}</p>
       </div>
 
-      {% for service in services %}
+      
       <div class="row">
         <div class="image col-lg-6" style='background-image: url("{{service.image.url}}");' data-aos="fade-right"></div>
         <div class="col-lg-6" data-aos="fade-left" data-aos-delay="100">
           {% for cat in service.all_categorie %}
           <div class="icon-box mt-5 mt-lg-0" data-aos="zoom-in" data-aos-delay="150">
-            <i><img src="{% static "dist/img/favicon.ico" %}" class="rounded mx-auto" alt="User Image"></i>
+            <i><img src="{{cat.image.url}}" class="rounded mx-auto" alt="User Image"></i>
             <h4>{{cat.libelle}}</h4>
             <p>{{cat.description}}</p>
           </div>
@@ -268,7 +269,7 @@
             <div class="address">
               <i class="bi bi-geo-alt"></i>
               <h4>Location:</h4>
-              <p>A108 Adam Street, New York, NY 535022</p>
+              <p>Bamako (MALI), Hamdallaye Rue:..., Porte:...</p>
             </div>
 
             <div class="email">
@@ -293,20 +294,20 @@
             {% csrf_token %}
             <div class="row">
               <div class="col-md-6 form-group">
-                <input type="text" name="name" class="form-control" placeholder="Your Name" required>
+                <input type="text" name="name" class="form-control" placeholder="Votre Nom" required>
               </div>
               <div class="col-md-6 form-group mt-3 mt-md-0">
-                <input type="email" class="form-control" name="email" placeholder="Your Email" required>
+                <input type="email" class="form-control" name="email" placeholder="Votre Email" required>
               </div>
             </div>
             <div class="form-group mt-3">
-              <input type="text" class="form-control" name="sujet" placeholder="Subject" required>
+              <input type="text" class="form-control" name="sujet" placeholder="Sujet" required>
             </div>
             <div class="form-group mt-3">
               <textarea class="form-control" name="message" rows="5" placeholder="Message" required></textarea>
             </div>
             
-            <div class="text-center card-footer">
+            <div class="text-center card-footer mt-3">
               <button class="btn btn-primary" type="submit">Send Message</button>
             </div>
           </form>
